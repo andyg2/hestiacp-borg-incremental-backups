@@ -24,7 +24,6 @@ while read USER ; do
           mydumper -v 1 --triggers --events --routines  --rows=1000 --threads=1 --compress --database=$DATABASE --outputdir=$DESTINATION/$DATABASE
         else
           # Clean destination
-          rm -f $DESTINATION/*
           mysqldump $DATABASE --opt --routines | gzip > $DESTINATION/$DATABASE.sql.gz
           echo "$(date +'%F %T') -- $DATABASE > $DESTINATION/$DATABASE.sql.gz"
       fi
